@@ -6,6 +6,7 @@ package com.example.demo.config.security;
  * @author sejinpark
  * @since 21. 1. 11.
  */
+import com.example.demo.enums.UserRole;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -41,14 +42,14 @@ public class JwtTokenProvider {
     }
 
     // JWT 토큰 생성
-    public String createToken(String email, List<String> roles) {
+    public String createToken(String email, List<UserRole> roles) {
         Claims claims = Jwts.claims().setSubject(email); // JWT payload 에 저장되는 정보단위
         claims.put("roles", roles); // 정보 저장
         Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims) // 정보 저장
                 .setIssuedAt(now) // 토큰 발행 시간
-                .setExpiration(new Date(now.getTime() + tokenValidTime)) // 토큰 만료시
+                .setExpiration(new Date(now.getTime() + tokenValidTime)) // 토큰 만료시간
                 .signWith(SignatureAlgorithm.HS256, secretKey)  // 사용할 암호화 알고리즘, 시크릿
                 .compact();
     }

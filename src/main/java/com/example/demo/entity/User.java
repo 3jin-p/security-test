@@ -1,4 +1,5 @@
 package com.example.demo.entity;
+import com.example.demo.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,13 +32,14 @@ public class User implements UserDetails {
     @Column(length = 300, nullable = false)
     private String password;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.EAGER, targetClass = UserRole.class)
     @Builder.Default
-    private List<String> roles = new ArrayList<>();
+    private List<UserRole> roles = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles.stream()
+                .map((role) -> role.value)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
