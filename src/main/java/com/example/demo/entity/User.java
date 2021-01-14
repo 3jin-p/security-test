@@ -1,4 +1,5 @@
 package com.example.demo.entity;
+import com.example.demo.entity.audit.BasicTimeEntity;
 import com.example.demo.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Builder
 @Entity
-public class User implements UserDetails {
+public class User extends BasicTimeEntity implements UserDetails  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,11 +34,13 @@ public class User implements UserDetails {
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER, targetClass = UserRole.class)
+    @Enumerated(EnumType.STRING)
     @Builder.Default
     private List<UserRole> roles = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         return this.roles.stream()
                 .map((role) -> role.value)
                 .map(SimpleGrantedAuthority::new)

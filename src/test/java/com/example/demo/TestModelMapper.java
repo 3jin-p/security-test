@@ -31,8 +31,13 @@ public class TestModelMapper {
                 .build();
 
         UserDTO.Info userDTO_Info = defaultModelMapper.map(user, UserDTO.Info.class);
+        UserDTO.FullInfo userDTO_full_Info = defaultModelMapper.map(user, UserDTO.FullInfo.class);
 
         assert userDTO_Info.getEmail().equals("email");
         assert userDTO_Info.getRoles().get(0) == UserRole.USER;
+
+        assert userDTO_full_Info.getEmail().equals("email");
+        assert userDTO_full_Info.getRoles().get(0) == UserRole.USER;
+        assert userDTO_full_Info.getPassword().equals("password");
     }
 }

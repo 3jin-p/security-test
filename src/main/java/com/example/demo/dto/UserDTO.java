@@ -5,6 +5,7 @@ import lombok.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,14 +23,15 @@ public class UserDTO {
     public static class Info {
         private String email;
         private List<UserRole> roles;
+        private LocalDateTime createdDate;
     }
 
     @Getter
     @NoArgsConstructor
     public static class FullInfo extends Info {
         private String password;
-        public FullInfo(String email, List<UserRole> roles, String password) {
-            super(email, roles);
+        public FullInfo(String email, List<UserRole> roles, String password, LocalDateTime createdDate) {
+            super(email, roles, createdDate);
             this.password = password;
         }
     }

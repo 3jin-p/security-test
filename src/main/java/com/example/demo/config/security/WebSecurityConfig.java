@@ -1,5 +1,6 @@
 package com.example.demo.config.security;
 
+import com.example.demo.enums.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -50,8 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // JWT 를 사용할것이므로 Stateless
                 .and()
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/admin/**").hasRole(UserRole.ADMIN.value)
+                .antMatchers("/user/**").hasRole(UserRole.USER.value)
                 .anyRequest().permitAll()
                 .and().headers().addHeaderWriter(
                     new StaticHeadersWriter("X-Content-Security-Policy","script-src 'self'"))
@@ -59,6 +60,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
                 // UsernamePasswordAuthenticationFilter 이전에 jwtAuthenticationFilter 를 넣어줌
-
     }
 }
