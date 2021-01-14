@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,13 +32,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
 
-    // 암호화에 필요한 PasswordEncoder 를 Bean 등록합니다.
+    // PasswordEncoder 비밀번호 암호화
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    // authenticationManager를 Bean 등록합니다.
+    // authenticationManager
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -51,8 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // JWT 를 사용할것이므로 Stateless
                 .and()
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole(UserRole.ADMIN.value)
-                .antMatchers("/user/**").hasRole(UserRole.USER.value)
+                .antMatchers("/admin/**").hasAuthority(UserRole.ADMIN.value)
+                .antMatchers("/user/**").hasAuthority(UserRole.USER.value)
                 .anyRequest().permitAll()
                 .and().headers().addHeaderWriter(
                     new StaticHeadersWriter("X-Content-Security-Policy","script-src 'self'"))

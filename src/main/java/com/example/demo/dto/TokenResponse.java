@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
+
 /**
  * <b>
  *     AccessToken과 RefreshToken을 주고받을때 사용

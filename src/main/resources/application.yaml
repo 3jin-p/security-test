@@ -10,3 +10,11 @@ spring:
 naver:
   client : 3qhnohQFlOOJ35B5M5Mi
   secret : 9dBljS5fjJ
+
+jwt :
+  token :
+    header :
+      name : X-AUTH-TOKEN
+    creation :
+      secretkey : jwtpractice
+

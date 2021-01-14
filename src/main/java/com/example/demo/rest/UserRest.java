@@ -6,11 +6,12 @@ import com.example.demo.dto.UserDTO;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 /**
  * <b>파일 설명</b>
@@ -40,8 +41,5 @@ public class UserRest {
         return TokenResponse.of(userService.login(user));
     }
 
-    @GetMapping("/user/test")
-    public Object getUserFullInfo(@RequestBody TokenResponse tokenResponse) {
-       return jwtTokenProvider.getAuthentication(tokenResponse.getToken()).getPrincipal();
-    }
+
 }
