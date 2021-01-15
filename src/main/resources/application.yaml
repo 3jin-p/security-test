@@ -7,9 +7,10 @@ spring:
   h2:
     console:
       enabled: true
-naver:
-  client : 3qhnohQFlOOJ35B5M5Mi
-  secret : 9dBljS5fjJ
+
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
 
 jwt :
   token :

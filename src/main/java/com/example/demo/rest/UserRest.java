@@ -40,6 +40,5 @@ public class UserRest {
     public TokenResponse login(@RequestBody Map<String, String> user) {
         return TokenResponse.of(userService.login(user));
     }
-
-
+    
 }

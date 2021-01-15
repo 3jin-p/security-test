@@ -37,9 +37,9 @@ public class UserService {
 
     public String login(Map<String, String> user) {
         User member = userRepo.findByEmail(user.get("email"))
-                .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 E-MAIL 입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("user.incorrect.email"));
         if (!passwordEncoder.matches(user.get("password"), member.getPassword())) {
-            throw new IllegalArgumentException("잘못된 비밀번호입니다.");
+            throw new IllegalArgumentException("user.incorrect.password");
         }
         return jwtTokenProvider.createToken(
                         member.getUsername(), member.getRoles());

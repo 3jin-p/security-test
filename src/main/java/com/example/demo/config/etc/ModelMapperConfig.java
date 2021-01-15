@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.config.etc;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
