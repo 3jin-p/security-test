@@ -1,4 +1,4 @@
-package com.example.demo.exception;
+package com.example.demo.util;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
@@ -20,12 +20,11 @@ import org.springframework.stereotype.Component;
 public class MessageSourceUtil {
 
     private final MessageSource messageSource ;
-    private final String EMPTY_MSG = "";
 
     public String getMessage(String key) {
         String msg = messageSource.getMessage(key, null, LocaleContextHolder.getLocale());
         if(!isValid(key, msg)) {
-            return EMPTY_MSG;
+            return "";
         }
         return msg;
     }

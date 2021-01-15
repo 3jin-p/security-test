@@ -26,7 +26,6 @@ public class UserRest {
 
     private final UserService userService;
     private final ModelMapper defaultModelMapper;
-    private final JwtTokenProvider jwtTokenProvider;
 
     // 회원가입
     @PostMapping("/join")
@@ -40,5 +39,5 @@ public class UserRest {
     public TokenResponse login(@RequestBody Map<String, String> user) {
         return TokenResponse.of(userService.login(user));
     }
-    
+
 }
