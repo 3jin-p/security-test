@@ -30,7 +30,6 @@ public class ExceptionAdvice {
         return res;
     }
 
-
     private ExceptionResponse response(String type) {
         return ExceptionResponse.of(
                 messageSource.getMessage(type + CODE_SUFFIX )

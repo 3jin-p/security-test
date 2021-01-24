@@ -13,7 +13,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Getter
@@ -40,7 +39,6 @@ public class User extends BasicTimeEntity implements UserDetails  {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
         return this.roles.stream()
                 .map((role) -> role.value)
                 .map(SimpleGrantedAuthority::new)

@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.config.security.JwtTokenProvider;
-import com.example.demo.dto.TokenResponse;
 import com.example.demo.entity.User;
 import com.example.demo.enums.UserRole;
 import com.example.demo.repo.UserRepo;
