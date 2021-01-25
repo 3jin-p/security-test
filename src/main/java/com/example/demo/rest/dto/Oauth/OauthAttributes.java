@@ -1,4 +1,4 @@
-package com.example.demo.rest.dto;
+package com.example.demo.rest.dto.Oauth;
 
 import com.example.demo.enums.OauthFields;
 import lombok.AllArgsConstructor;

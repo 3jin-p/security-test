@@ -35,4 +35,9 @@ public class UserRest {
         return TokenDTO.of(userService.login(user));
     }
 
+    @PostMapping("login/oauth2")
+    public void loginByOauth() {
+
+    }
+
 }
