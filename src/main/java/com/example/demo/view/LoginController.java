@@ -12,8 +12,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
-    @GetMapping("/page/login")
+    @GetMapping({"", "/"})
+    public String getAuthorizationMessage() {
+        return "/page/home";
+    }
+
+    @GetMapping("/login")
     public String login() {
-        return "login";
+        return "/page/login";
+    }
+
+    @GetMapping({"/loginSuccess"})
+    public String loginSuccess() {
+        return "/page/success";
+    }
+
+    @GetMapping("/loginFailure")
+    public String loginFailure() {
+        return "/page/loginFailure";
     }
 }

@@ -1,6 +1,7 @@
 package com.example.demo.config.security;
 
 import com.example.demo.enums.UserRole;
+import com.example.demo.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.Objects;
@@ -59,14 +60,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasAuthority(UserRole.ADMIN.value)
                 .antMatchers("/user/**").hasAuthority(UserRole.USER.value)
-                .antMatchers("/page/login/**").permitAll()
                 .anyRequest().permitAll()
-                .and().headers().addHeaderWriter(
-                    new StaticHeadersWriter("X-Content-Security-Policy","script-src 'self'"))
+                .and()
+                .headers()
+                .addHeaderWriter(
+                        new StaticHeadersWriter("X-Content-Security-Policy","script-src 'self'"))
                 .frameOptions().disable()
                 .and()
-                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
-                // UsernamePasswordAuthenticationFilter 이전에 jwtAuthenticationFilter 를 넣어줌
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .oauth2Login()
+                .userInfoEndpoint()
+                .userService(new CustomOAuth2UserService());
+
+
     }
 
 
@@ -110,7 +116,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .scope("email", "profile")
                     .build();
         }
-
         return null;
     }
 
