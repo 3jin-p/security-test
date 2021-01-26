@@ -1,4 +1,4 @@
-package com.example.auth.config.security;
+package com.example.auth.core.jwt;
 
 /**
  * <b>파일 설명</b>

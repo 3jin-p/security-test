@@ -1,4 +1,4 @@
-package com.example.auth.service;
+package com.example.auth.core.service;
 
 import com.example.common.repo.UserRepo;
 import lombok.RequiredArgsConstructor;

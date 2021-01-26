@@ -1,4 +1,4 @@
-package com.example.auth.view;
+package com.example.auth.web.view;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

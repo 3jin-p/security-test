@@ -1,4 +1,4 @@
-package com.example.auth.rest.dto;
+package com.example.auth.web.rest.dto;
 
 import lombok.Getter;
 

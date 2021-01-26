@@ -1,8 +1,8 @@
-package com.example.auth.rest;
+package com.example.auth.web.rest;
 
-import com.example.auth.rest.dto.TokenDTO;
-import com.example.auth.rest.dto.UserDTO;
-import com.example.auth.service.UserService;
+import com.example.auth.web.rest.dto.TokenDTO;
+import com.example.auth.web.rest.dto.UserDTO;
+import com.example.auth.core.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;

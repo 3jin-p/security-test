@@ -1,4 +1,4 @@
-package com.example.auth.service;
+package com.example.auth.core.service;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.convert.converter.Converter;

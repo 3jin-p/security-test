@@ -1,4 +1,4 @@
-package com.example.auth.rest.dto;
+package com.example.auth.web.rest.dto;
 
 import com.example.common.enums.UserRole;
 import lombok.*;
