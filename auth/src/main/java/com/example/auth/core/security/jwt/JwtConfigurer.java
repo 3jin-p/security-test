@@ -1,4 +1,4 @@
-package com.example.auth.core.jwt;
+package com.example.auth.core.security.jwt;
 
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

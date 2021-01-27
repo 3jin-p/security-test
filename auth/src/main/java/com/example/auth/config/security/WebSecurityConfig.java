@@ -1,8 +1,8 @@
 package com.example.auth.config.security;
 
-import com.example.auth.core.jwt.JwtAuthenticationFilter;
-import com.example.auth.core.jwt.JwtTokenProvider;
-import com.example.auth.core.oauth2.CustomOAuth2Provider;
+import com.example.auth.core.security.jwt.JwtAuthenticationFilter;
+import com.example.auth.core.security.jwt.JwtTokenProvider;
+import com.example.auth.core.security.oauth2.CustomOAuth2Provider;
 import com.example.common.enums.UserRole;
 import com.example.auth.core.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.auth.core.jwt;
+package com.example.auth.core.security.jwt;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;

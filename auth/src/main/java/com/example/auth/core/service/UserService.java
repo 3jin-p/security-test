@@ -1,6 +1,6 @@
 package com.example.auth.core.service;
 
-import com.example.auth.core.jwt.JwtTokenProvider;
+import com.example.auth.core.security.jwt.JwtTokenProvider;
 import com.example.common.entity.User;
 import com.example.common.enums.UserRole;
 import com.example.common.repo.UserRepo;
