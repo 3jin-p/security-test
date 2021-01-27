@@ -3,7 +3,6 @@ package com.example.auth.core.security.jwt;
 import com.example.auth.core.security.AuthenticationToken;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.SignatureException;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,12 +22,20 @@ public class JwtToken implements AuthenticationToken<Claims> {
     private final String token;
     private final Key key;
 
-    private static final String AUTHORITIES_KEY = "role";
+    public static final String AUTHORITIES_KEY = "role";
 
 
     @Override
+    public String getSubject() {
+        return getData()
+                .getSubject();
+    }
+
+    @Override
     public boolean validate() {
-        return false;
+        return getData()
+                .getExpiration()
+                .before(new Date());
     }
 
     @Override
@@ -67,16 +74,16 @@ public class JwtToken implements AuthenticationToken<Claims> {
                 .signWith(key, SignatureAlgorithm.HS256)
                 .setExpiration(expiredDate)
                 .compact();
+
         return Optional.ofNullable(token);
     }
 
 
-    private JwtToken(String token, Key key) {
+    public JwtToken(String token, Key key) {
         this.token = token;
         this.key = key;
     }
 
-    @Builder
     public JwtToken(String id, String role, Date expiredDate, Key key) {
         this.key = key;
         this.token = createToken(id, role, expiredDate).get();

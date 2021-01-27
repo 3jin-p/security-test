@@ -10,6 +10,7 @@ import java.util.Optional;
  * @since 21. 1. 26.
  */
 public interface AuthenticationToken<T> {
+    String getSubject();
     boolean validate();
     T getData();
     Optional<String> createToken(String userId, String role, Date expiredDate);
