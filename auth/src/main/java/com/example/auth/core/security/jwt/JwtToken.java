@@ -1,17 +1,21 @@
 package com.example.auth.core.security.jwt;
 
-import com.example.auth.core.security.AuthenticationToken;
+import com.example.common.enums.UserRole;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.SignatureException;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.security.Key;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Optional;
 
 /**
- * <b>파일 설명</b>
+ * <b>
+ *     Jwt Token 인증을 위한 AuthenticationToken Interface의 구현체
+ * </b>
  *
  * @author sejinpark
  * @since 21. 1. 26.
@@ -67,10 +71,10 @@ public class JwtToken implements AuthenticationToken<Claims> {
     }
 
     @Override
-    public Optional<String> createToken(String userId, String role, Date expiredDate) {
+    public Optional<String> createToken(String userId, Collection<UserRole> roles, Date expiredDate) {
         var token = Jwts.builder()
                 .setSubject(userId)
-                .claim(AUTHORITIES_KEY, role)
+                .claim(AUTHORITIES_KEY, roles)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .setExpiration(expiredDate)
                 .compact();
@@ -78,14 +82,18 @@ public class JwtToken implements AuthenticationToken<Claims> {
         return Optional.ofNullable(token);
     }
 
+    protected static JwtToken of(String token, Key key) {
+        return new JwtToken(token, key);
+    }
 
-    public JwtToken(String token, Key key) {
+    private JwtToken(String token, Key key) {
         this.token = token;
         this.key = key;
     }
 
-    public JwtToken(String id, String role, Date expiredDate, Key key) {
+    @Builder
+    protected JwtToken(String id, Collection<UserRole> roles, Date expiredDate, Key key) {
         this.key = key;
-        this.token = createToken(id, role, expiredDate).get();
+        this.token = createToken(id, roles, expiredDate).get();
     }
 }

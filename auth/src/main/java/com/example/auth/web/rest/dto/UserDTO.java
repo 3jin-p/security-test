@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <b>파일 설명</b>
@@ -19,7 +20,7 @@ public class UserDTO {
     @AllArgsConstructor @NoArgsConstructor
     public static class Info {
         private String email;
-        private List<UserRole> roles;
+        private Set<UserRole> roles;
         private LocalDateTime createdDate;
     }
 

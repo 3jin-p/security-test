@@ -11,32 +11,11 @@ spring:
   messages:
     basename: i18n/exception
     encoding: UTF-8
-# Security
-  security:
-    oauth2:
-      client:
-        registration:
-          naver:
-            client-id: "3qhnohQFlOOJ35B5M5Mi"
-            client-secret: "9dBljS5fjJ"
-            redirect_uri: '{baseUrl}/{action}/oauth2/code/{registrationId}'
-            authorization_grant_type: authorization_code
-            scope:
-              - name
-              - email
-              - profile_image
-            client-name: Naver
-        provider:
-          naver:
-            authorization_uri: '/oauth2.0/authorize'
-            token_uri: '/oauth2.0/token'
-            user-info-url: https://openapi.naver.com/v1/nid/me
-            user_name_attribute: response
 # jwt
 jwt :
   token :
     header :
       name : X-AUTH-TOKEN
     creation :
-      secretkey : jwtpractice
+      secretkey : F8EF2B7B714159E608B069CE575B1ED4F2366EFB893856DC9AA2E3BDFE2E6B3B
 
