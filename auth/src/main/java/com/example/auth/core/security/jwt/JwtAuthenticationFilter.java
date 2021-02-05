@@ -29,8 +29,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends GenericFilterBean {
 
-    @Value("${jwt.token.header.name}")
-    private String TOKEN_HEADER;
+    private final String TOKEN_HEADER = "X-AUTH_TOKEN";
     private final JwtTokenProvider jwtTokenProvider;
 
     @Override
@@ -38,10 +37,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 
         Optional<String> token = extractToken((HttpServletRequest) request);
         if (token.isPresent()) {
-            JwtToken jwtToken = jwtTokenProvider.convert(
-                    extractToken((HttpServletRequest) request)
-                            .orElseThrow(NoSuchHeaderException::new));
-
+            JwtToken jwtToken = jwtTokenProvider.convert(token.get());
             authenticate(jwtToken);
         }
 

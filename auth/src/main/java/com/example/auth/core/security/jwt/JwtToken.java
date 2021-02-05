@@ -39,7 +39,7 @@ public class JwtToken implements AuthenticationToken<Claims> {
     public boolean validate() {
         return getData()
                 .getExpiration()
-                .before(new Date());
+                .after(new Date());
     }
 
     @Override

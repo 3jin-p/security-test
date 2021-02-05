@@ -5,6 +5,8 @@ import com.example.auth.web.rest.dto.UserDTO;
 import com.example.auth.core.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -33,6 +35,11 @@ public class UserRest {
     @PostMapping("/login")
     public AuthenticationToken<?> login(@RequestBody Map<String, String> user) {
         return userService.login(user);
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity<String> sss() {
+        return new ResponseEntity<>("dd", HttpStatus.OK);
     }
 
 }
