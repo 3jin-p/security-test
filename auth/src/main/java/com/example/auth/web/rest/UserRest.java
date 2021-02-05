@@ -1,10 +1,12 @@
 package com.example.auth.web.rest;
 
-import com.example.auth.web.rest.dto.TokenDTO;
+import com.example.auth.core.security.jwt.AuthenticationToken;
 import com.example.auth.web.rest.dto.UserDTO;
 import com.example.auth.core.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -31,13 +33,13 @@ public class UserRest {
 
     // 로그인
     @PostMapping("/login")
-    public TokenDTO login(@RequestBody Map<String, String> user) {
-        return TokenDTO.of(userService.login(user));
+    public AuthenticationToken<?> login(@RequestBody Map<String, String> user) {
+        return userService.login(user);
     }
 
-    @PostMapping("login/oauth2")
-    public void loginByOauth() {
-
+    @PostMapping("/user")
+    public ResponseEntity<String> sss() {
+        return new ResponseEntity<>("dd", HttpStatus.OK);
     }
 
 }

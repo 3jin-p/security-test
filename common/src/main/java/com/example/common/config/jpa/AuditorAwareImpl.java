@@ -1,4 +1,4 @@
-package com.example.auth.config.jpa;
+package com.example.common.config.jpa;
 
 import org.springframework.data.domain.AuditorAware;
 

@@ -1,4 +1,4 @@
-package com.example.auth;
+package com.example.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,17 +7,17 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
- * <b>Authentication Server Runner/b>
+ * <b>파일 설명</b>
  *
  * @author sejinpark
- * @since 21. 1. 26.
+ * @since 21. 1. 30.
  */
 @SpringBootApplication
-@ComponentScan({"com.example.common.config", "com.example.auth"})
+@ComponentScan({"com.example.common.config", "com.example.api"})
 @EntityScan("com.example.common.entity")
 @EnableJpaRepositories("com.example.common.repo")
-public class AuthModule {
+public class ApiModule {
     public static void main(String[] args) {
-        SpringApplication.run(AuthModule.class, args);
+        SpringApplication.run(ApiModule.class, args);
     }
 }

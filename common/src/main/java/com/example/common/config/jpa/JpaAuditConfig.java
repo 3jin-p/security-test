@@ -1,4 +1,4 @@
-package com.example.auth.config.jpa;
+package com.example.common.config.jpa;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
