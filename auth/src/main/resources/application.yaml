@@ -18,4 +18,5 @@ jwt :
       name : 'X-AUTH-TOKEN'
     creation :
       secretkey : F8EF2B7B714159E608B069CE575B1ED4F2366EFB893856DC9AA2E3BDFE2E6B3B
-
+server:
+  port: 8090
