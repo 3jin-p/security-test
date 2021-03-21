@@ -1,9 +1,11 @@
 package com.example.auth.web.rest.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter
+@NoArgsConstructor
 public class TestResponse<T> {
 
     public int httpStatus;

@@ -12,7 +12,7 @@ public class TestService {
     private final TestRepo testRepo;
 
     public Dummy testGet(Long id) {
-        return testRepo.getOne(id);
+        return testRepo.findById(id).get();
     }
     public Dummy testPost(Dummy dummy) {
         return testRepo.save(dummy);

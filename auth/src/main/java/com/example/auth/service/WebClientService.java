@@ -17,7 +17,7 @@ public class WebClientService {
     public void callGetApi() {
         WebClient webClient = WebClient.create(TEST_API_HOST_URL);
         TestResponse response =  webClient.get()
-                    .uri("/test")
+                    .uri("/test/1")
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .retrieve()
                     .bodyToMono(TestResponse.class)
@@ -27,15 +27,18 @@ public class WebClientService {
     }
 
     public void callPostApi() {
-        WebClient webClient = WebClient.create(TEST_API_HOST_URL);
-        TestResponse response =  webClient.post()
-                .uri("/test")
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .body(new Dummy("더미데이터"), Dummy.class)
-                .retrieve()
-                .bodyToMono(TestResponse.class)
-                .log()
-                .block();
+        try {
+            WebClient webClient = WebClient.create(TEST_API_HOST_URL);
+            TestResponse response =  webClient.post()
+                    .uri("/test")
+                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                    .bodyValue(new Dummy(1L, "더미데이터"))
+                    .retrieve()
+                    .bodyToMono(TestResponse.class)
+                    .block();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         log.info("Test Post Api End -");
     }
 }

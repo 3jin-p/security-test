@@ -7,23 +7,23 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/test")
+@RestController
 @RequiredArgsConstructor
 public class TestRest {
 
     private final TestService testService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/test/{id}")
     public TestResponse<Dummy> getApiForTest(@PathVariable Long id) {
         return new TestResponse<>(HttpStatus.OK.value(), testService.testGet(id));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/test/{id}")
     public TestResponse<Void> deleteApiForTest(@PathVariable Long id) {
         return new TestResponse(HttpStatus.OK.value(), Void.TYPE);
     }
 
-    @PostMapping
+    @PostMapping("/test")
     public TestResponse<Dummy> postApiForTest(@RequestBody Dummy dummy) {
         return new TestResponse<>(HttpStatus.OK.value(), testService.testPost(dummy));
     }
